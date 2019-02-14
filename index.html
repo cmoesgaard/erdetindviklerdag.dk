@@ -1,1 +1,59 @@
-Er det?
+<!DOCTYPE html>
+<!--Tyvstjålet fra erdetfredag.dk-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Er det indviklerdag?</title>
+  <script
+    src="https://cdn.jsdelivr.net/npm/canvas-confetti@0.0.3/dist/confetti.browser.min.js"></script>
+  <script>
+    function indviklerdag () {
+      var d = new Date();
+      var elem = document.getElementById("answer");
+      if (d.getDay() == 5) {
+        elem.innerHTML = "Ja";
+        elem.className = "yes";
+        window.confetti()
+      } else {
+        elem.innerHTML = "Nej";
+        elem.className = "no";
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #000;
+    }
+
+    h1 {
+      font-family: constantia, georgia, serif;
+      font-size: 36pt;
+      text-align: center;
+      line-height: 4em;
+      color: #ccc;
+    }
+
+    h2 {
+      font-family: candara, verdana, sans-serif;
+      font-size: 48pt;
+      text-align: center;
+      color: #ccc;
+    }
+
+    .yes {
+      color: #5f5;
+    }
+
+    .no {
+      color: #f55;
+    }
+  </style>
+</head>
+<body onLoad="indviklerdag();">
+
+<h1>Er det indviklerdag?</h1>
+
+<h2 id="answer" class="no"></h2>
+
+</body>
+</html>
