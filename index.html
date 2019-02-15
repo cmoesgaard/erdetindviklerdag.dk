@@ -7,13 +7,44 @@
   <script
     src="https://cdn.jsdelivr.net/npm/canvas-confetti@0.0.3/dist/confetti.browser.min.js"></script>
   <script>
+    function doit () {
+      var end = Date.now() + (5 * 1000);
+
+      var colors = ['#ec008c', '#ffffff'];
+
+      (function frame () {
+        window.confetti({
+          particleCount: 2,
+          angle: 60,
+          spread: 55,
+          origin: {
+            x: 0
+          },
+          colors: colors
+        });
+        window.confetti({
+          particleCount: 2,
+          angle: 120,
+          spread: 55,
+          origin: {
+            x: 1
+          },
+          colors: colors
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    }
+
     function indviklerdag () {
       var d = new Date();
       var elem = document.getElementById("answer");
       if (d.getDay() == 5) {
-        elem.innerHTML = "Ja";
+        elem.innerHTML = "JA!";
         elem.className = "yes";
-        window.confetti()
+        doit()
       } else {
         elem.innerHTML = "Nej";
         elem.className = "no";
@@ -27,33 +58,24 @@
 
     h1 {
       font-family: constantia, georgia, serif;
-      font-size: 36pt;
-      text-align: center;
-      line-height: 4em;
-      color: #ccc;
-    }
-
-    h2 {
-      font-family: candara, verdana, sans-serif;
-      font-size: 48pt;
+      font-size: 200pt;
       text-align: center;
       color: #ccc;
     }
 
     .yes {
-      color: #5f5;
+      color: #ec008c;
     }
 
     .no {
-      color: #f55;
+      color: #ccc;
+      font-size: 100pt;
     }
   </style>
 </head>
 <body onLoad="indviklerdag();">
 
-<h1>Er det indviklerdag?</h1>
-
-<h2 id="answer" class="no"></h2>
+<h1 id="answer" class="no"></h1>
 
 </body>
 </html>
